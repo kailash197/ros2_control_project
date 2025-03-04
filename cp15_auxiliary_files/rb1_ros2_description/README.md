@@ -70,7 +70,10 @@ ros2 topic list
 
 ### 2. Moving robot around
 /rb1_base_controller/cmd_vel_unstamped topic can be used to control robot's movement, either by teleop_twist_keyboard or simply publishing velocity commands as follows:
-
+- Using teleop_twist_keyboard to control robot
+  ```
+  ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r cmd_vel:=/rb1_base_controller/cmd_vel_unstamped
+  ```
 - Move forward direction
 ```
 ros2 topic pub --rate 10 /rb1_base_controller/cmd_vel_unstamped geometry_msgs/msg/Twist "{linear: {x: 0.25, y: 0, z: 0.0}, angular: {x: 0.0,y: 0.0, z: 0.0}}"  --once
@@ -92,6 +95,7 @@ ros2 topic pub --rate 10 /rb1_base_controller/cmd_vel_unstamped geometry_msgs/ms
   ros2 topic pub --rate 10 /rb1_base_controller/cmd_vel_unstamped geometry_msgs/msg/Twist "{linear: {x: 0.0, y: 0, z: 0.0}, angular: {x: 0.0,y: 0.0, z: 0.0}}"  --once
   ```
 Please feel free to change linear velocites to move in varying speed and directions.
+
 
 ### 3. Stop simulation
 Use "Ctrl+C" to kill all the processes started by the launch file.

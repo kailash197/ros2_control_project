@@ -93,6 +93,9 @@ ros2 topic pub --rate 10 /rb1_base_controller/cmd_vel_unstamped geometry_msgs/ms
   ```
 Please feel free to change linear velocites to move in varying speed and directions.
 
+### 3. Stop simulation
+Use "Ctrl+C" to kill all the processes started by the launch file.
+
 ## Task2: Lift and release the robot elevator using Effort Controller
 This section describes how to start effort controller, check various topics, services, etc to make sure it runs as expected.
 
@@ -169,6 +172,8 @@ ros2 control set_controller_state lifting_effort_controller stop
 ros2 control unload_controller lifting_effort_controller
 ```
 ![image](https://github.com/user-attachments/assets/1b26566a-52eb-4a8c-bd88-8904209be3c6)
+
+And, use "Ctrl+C" to kill all the processes started by the launch file.
 
 
 

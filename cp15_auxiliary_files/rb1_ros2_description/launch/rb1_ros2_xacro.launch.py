@@ -84,6 +84,13 @@ def generate_launch_description():
                    "--controller-manager", "/controller_manager"],
     )
 
+    lift_controller_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["lifting_effort_controller",
+                   "--controller-manager", "/controller_manager"],
+    )
+
     return LaunchDescription([
         gazebo,
         rsp_robot1,
@@ -115,6 +122,12 @@ def generate_launch_description():
             event_handler=OnProcessExit(
                 target_action=joint_state_broadcaster_spawner,
                 on_exit=[diffdrive_controller_spawner],
+            )
+        ),
+        RegisterEventHandler(
+            event_handler=OnProcessExit(
+                target_action=diffdrive_controller_spawner,
+                on_exit=[lift_controller_spawner],
             )
         ),
     ])

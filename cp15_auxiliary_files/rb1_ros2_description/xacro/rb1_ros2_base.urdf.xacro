@@ -142,7 +142,27 @@
     <!-- Gazebo ros2 control plugins -->
     <gazebo>
         <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
-        <parameters>$(find rb1_ros2_description)/config/rb1_controller.yaml</parameters>
+            <parameters>$(find rb1_ros2_description)/config/rb1_controller.yaml</parameters>
         </plugin>
-  </gazebo>   
+    </gazebo>
+
+    <ros2_control name="effort_controllers" type="system">
+        <hardware>
+            <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+        </hardware>
+        <joint name="robot_elevator_platform_joint">
+            <command_interface name="effort">
+                <param name="min">-10</param>
+                <param name="max">10</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+            <state_interface name="effort"/>
+        </joint>
+  </ros2_control>
+  <gazebo>
+    <plugin filename="libgazebo_ros_force_system.so" name="gazebo_ros2_control">
+        <parameters>$(find rb1_ros2_description)/config/rb1_controller.yaml</parameters>
+    </plugin>
+  </gazebo>
 </robot>

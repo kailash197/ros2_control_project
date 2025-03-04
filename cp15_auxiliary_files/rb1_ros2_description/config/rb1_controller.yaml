@@ -8,6 +8,15 @@ controller_manager:
     rb1_base_controller:
       type: diff_drive_controller/DiffDriveController
 
+    lifting_effort_controller:
+      type: effort_controllers/JointGroupEffortController
+
+# Controller properties and joints to use
+lifting_effort_controller:
+  ros__parameters:
+    joints:
+      - robot_elevator_platform_joint
+
 rb1_base_controller:
   ros__parameters:
     left_wheel_names: ["robot_left_wheel_joint"]
